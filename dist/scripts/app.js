@@ -20,7 +20,7 @@
           .state('collection', {
             url: '/collection',
             controller: 'CollectionCtrl as collection',
-            templateUrl: '/templates/album.html'
+            templateUrl: '/templates/collection.html'
           })
      }
 
