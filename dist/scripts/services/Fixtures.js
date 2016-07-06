@@ -34,6 +34,20 @@
      Fixtures.getAlbum = function() {
          return albumPicasso;
      };
+     //add second public method named getCollection that takes one argument number of albums
+     Fixtures.getCollection = function(numberOfAlbums) {
+       //return an array with the specified number of albumPicasso objects pushed to it
+       //create an a collection array
+       var collection_array = [];
+       var i = 0;
+       //loop through argument numberOfAlbums and push albumPicasso objects
+       while (i < numberOfAlbums) {
+         collection_array.push(albumPicasso);
+         i++
+       }
+       //return array
+       return collection_array; 
+     }
 
          return Fixtures;
      }
