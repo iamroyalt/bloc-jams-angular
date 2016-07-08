@@ -1,3 +1,4 @@
+//Fixture service pulls the album data into our application
 (function() {
      function Fixtures() {
          var Fixtures = {};
@@ -46,7 +47,7 @@
          i++
        }
        //return array
-       return collection_array; 
+       return collection_array;
      }
 
          return Fixtures;
