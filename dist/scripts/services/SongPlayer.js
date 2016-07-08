@@ -31,7 +31,11 @@
           };
 
 
-
+          /**
+          * @function getSongIndex
+          * @desc gets the index of song from currentAlbum.songs array
+          * @param {Object} song
+          */
           //write function to get index of a song
           var getSongIndex = function(song) {
             return currentAlbum.songs.indexOf(song);
@@ -73,20 +77,40 @@
                }
           };
 
+          /**
+          *@function pauseSong
+          *@description stops the currentBuzzObject and sets the playing variable to false
+          *@param {Object} song
+          */
           SongPlayer.pause = function(song) {
               song = song || SongPlayer.currentSong;
               currentBuzzObject.pause();
               song.playing = false;
           };
 
+          /**
+          *@function stopSong
+          *@description stops the currentBuzzObject and sets the playing variable to null
+          *@param {Object} song
+          */
+          var stopSong = function(song) {
+              currentBuzzObject.stop();
+              SongPlayer.currentSong.playing = null;
+          }
+
+          /**
+          *@function songPlayer.previous
+          *@description uses getSongIndex function, subtracts 1 from index, moving to previous song in currentAlbum.songs array
+          * if index goes below 0,it stops the song and sets currentSong to null, otherwise it plays the previous song
+          *@returns the previous song on album
+          */
           //write a method to go to the previous song utilizing ability to get song indexOf
           SongPlayer.previous = function() {
               var currentSongIndex = getSongIndex(SongPlayer.currentSong);
               currentSongIndex--;
               //logic for what should happen if previous song index is less than zero; stop playing current song and set value of currently playing song to zero
               if (currentSongIndex < 0) {
-                  currentBuzzObject.stop();
-                  SongPlayer.currentSong.playing = null;
+                  stopSong(SongPlayer.currentSong);
                 //in currengSongIndex is not less than zero,then it must be greater than zero
                 //add conditional else that moves to the previous song and automatically plays it
                 } else {
@@ -94,6 +118,27 @@
                       setSong(song);
                       playSong(song);
                 }
+          };
+
+
+          /**
+          *@function songPlayer.next
+          *@description uses getSongIndex function,adds 1 to index, moving to next song in currentAlbum.songs array
+          * if the index is >= to the amount of songs, it stops the song and sets currentSong to null, otherwise it plays next song
+          *@returns the next song on album
+          */
+          //write a method to go to the next song utilizing ability to get song indexOf
+          SongPlayer.next = function () {
+              var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+              currentSongIndex++;
+              //
+              if (currentSongIndex > currentAlbum.songs.length) {
+                  stopSong(SongPlayer.currentSong);
+                  } else {
+                      var song = currentAlbum.songs[currentSongIndex];
+                      setSong(song);
+                      playSong(song);
+              }
           };
 
           return SongPlayer;
