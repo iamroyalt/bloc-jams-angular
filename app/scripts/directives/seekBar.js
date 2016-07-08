@@ -45,6 +45,12 @@
                 scope.fillStyle = function() {
                     return {width: percentString()};
                 };
+
+                //write method that updates the position of the seek bar thumb
+                scope.thumbStyle = function () {
+                    return {left: percentString()};
+                };
+
                 //updates the seek bar value based on the seek bar's width and the location of the user's click on the seek bar
                 scope.onClickSeekBar = function(event) {
                     var percent = calculatePercent(seekBar, event);
@@ -64,9 +70,10 @@
                         $document.unbind('mouseup.thumb');
                     });
                 };
+
              }
-         };
-     }
+         }
+     };
 
      angular
          .module('blocJams')
