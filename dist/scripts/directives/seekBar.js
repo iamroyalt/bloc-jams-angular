@@ -3,6 +3,7 @@
      //It returns an object thta describe's the directives behavior to the HTML compiler
      // "$" jQuery wrapper for the browser's window.document object
      function seekBar($document) {
+
          var calculatePercent = function(seekBar, event) {
          var offsetX = event.pageX - seekBar.offset().left;
          var seekBarWidth = seekBar.width();
@@ -11,8 +12,6 @@
          offsetXPercent = Math.min(1, offsetXPercent);
          return offsetXPercent;
      };
-
-
 
          return {
              //the object communicates the behavior through options
@@ -46,7 +45,6 @@
                     scope.max = newValue;
                  });
 
-
                  //function that calculates a percent based on the value and maximum value of a seek bar
                  var percentString = function () {
                     var value = scope.value;
@@ -70,6 +68,7 @@
                     scope.value = percent * scope.max;
                     notifyOnChange(scope.value);
                 };
+
                 //uses $apply to constantly apply the change in value of scope.value as the user drags the seek bar thumb
                 scope.trackThumb = function() {
                     $document.bind('mousemove.thumb', function(event) {
@@ -77,7 +76,14 @@
                             scope.$apply(function() {
                             scope.value = percent * scope.max;
                             notifyOnChange(scope.value);
+                            });
                         });
+
+                    $document.bind('mouseup.thumb', function() {
+                        $document.unbind('mousemove.thumb');
+                        $document.unbind('mouseup.thumb');
+                    });
+                });
 
                 var notifyOnChange = function(newValue) {
                     if (typeof scope.onChange === 'function') {
@@ -86,15 +92,10 @@
                 };
 
 
-                    $document.bind('mouseup.thumb', function() {
-                        $document.unbind('mousemove.thumb');
-                        $document.unbind('mouseup.thumb');
-                    });
-                };
-
              }
          }
-     };
+
+       };
 
      angular
          .module('blocJams')
