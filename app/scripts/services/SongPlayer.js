@@ -12,6 +12,16 @@
           var currentBuzzObject = null;
 
           /**
+          * @desc set current song volume
+          * @type {Number} volume
+          */
+          var currentVolume = 80;
+          SongPlayer.initialVolume = 80;
+          SongPlayer.maxVolume = 100;
+
+
+
+          /**
           * @function setSong
           * @desc Stops currently playing song and loads new audio file as currentBuzzObject
           * @param {Object} song
@@ -163,9 +173,22 @@
                       }
                   };
               };
+              SongPlayer.volume = null;
+              /**
+              * @function setVolume
+              * @desc set volume on currently playing song
+              * @param {Number} volume
+              */
+              SongPlayer.setVolume = function(volume) {
+                if (currentBuzzObject) {
+                  currentBuzzObject.setVolume(volume);
+                }
+                SongPlayer.volume = volume;
+              };
+
 
               return SongPlayer;
-            };
+            }
 
      angular
          .module('blocJams')
