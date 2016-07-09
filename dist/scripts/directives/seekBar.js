@@ -3,6 +3,7 @@
      //It returns an object thta describe's the directives behavior to the HTML compiler
      // "$" jQuery wrapper for the browser's window.document object
      function seekBar($document) {
+
          var calculatePercent = function(seekBar, event) {
          var offsetX = event.pageX - seekBar.offset().left;
          var seekBarWidth = seekBar.width();
@@ -11,8 +12,6 @@
          offsetXPercent = Math.min(1, offsetXPercent);
          return offsetXPercent;
      };
-
-
 
          return {
              //the object communicates the behavior through options
@@ -24,7 +23,11 @@
              //restricts directive to specific declaration style --> element
              restrict: 'E',
              //specifies a new scope be created for the object
-             scope: { },
+             scope: {
+                 //want onChange to evaluate the attribute, so we attach it to the directive's scope
+                 // & is a binding type which provides a way to execute an expression in the context of the parent scope
+                 onChange: '&'
+             },
              //responsible for registering DOM listeners and updating the DOM. This is where most of directive logic goes
              link: function(scope, element, attributes) {
                  //holds value of seek bar, default value is 0
@@ -33,6 +36,14 @@
                  scope.max = 100;
                  //holds the element that matches the directive as a jQuery object so we can call jQuery methods
                  var seekBar = $(element);
+
+                 attributes.$observe('value', function(newValue) {
+                    scope.value = newValue;
+                 });
+
+                 attributes.$observe('max', function(newValue) {
+                    scope.max = newValue;
+                 });
 
                  //function that calculates a percent based on the value and maximum value of a seek bar
                  var percentString = function () {
@@ -55,25 +66,36 @@
                 scope.onClickSeekBar = function(event) {
                     var percent = calculatePercent(seekBar, event);
                     scope.value = percent * scope.max;
+                    notifyOnChange(scope.value);
                 };
+
                 //uses $apply to constantly apply the change in value of scope.value as the user drags the seek bar thumb
                 scope.trackThumb = function() {
                     $document.bind('mousemove.thumb', function(event) {
                         var percent = calculatePercent(seekBar, event);
-                        scope.$apply(function() {
-                        scope.value = percent * scope.max;
+                            scope.$apply(function() {
+                            scope.value = percent * scope.max;
+                            notifyOnChange(scope.value);
+                            });
                         });
-                    });
 
                     $document.bind('mouseup.thumb', function() {
                         $document.unbind('mousemove.thumb');
                         $document.unbind('mouseup.thumb');
                     });
+                });
+
+                var notifyOnChange = function(newValue) {
+                    if (typeof scope.onChange === 'function') {
+                        scope.onChange({value: newValue});
+                    }
                 };
+
 
              }
          }
-     };
+
+       };
 
      angular
          .module('blocJams')
