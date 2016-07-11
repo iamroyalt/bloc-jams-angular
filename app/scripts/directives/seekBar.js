@@ -89,7 +89,7 @@
             //write method that updates the position of the seek bar thumb
             scope.thumbStyle = function () {
                 return {left: percentString()};
-            }
+            };
          }
    };
 
