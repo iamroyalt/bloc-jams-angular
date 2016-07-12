@@ -42,6 +42,10 @@
                       SongPlayer.currentTime = currentBuzzObject.getTime();
                   });
               });
+              //Extra credit
+              currentBuzzObject.bind('ended', function(event){
+                  SongPlayer.next();
+              });
 
               //update currentSong to SongPlayer.currentSong
               SongPlayer.currentSong = song;
