@@ -1,5 +1,6 @@
 (function() {
   function Metric($rootScope) {
+    //holding data for songPlays
     $rootScope.songPlays = [];
 
     return {
@@ -21,5 +22,5 @@
 
   angular
     .module('blocJams')
-    .service('Metric', ['$rootScope', Metric]);
+    .service('MetricsService', ['$rootScope', MetricsService]);
 })();

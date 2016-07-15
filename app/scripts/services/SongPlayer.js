@@ -1,6 +1,7 @@
 (function() {
      //inject Fixture servce into SongPlayer service
-     function SongPlayer($rootScope, Fixtures) {
+     //METRICS - added MetricService to function
+     function SongPlayer($rootScope, Fixtures, MetricsService) {
           var SongPlayer = {};
 
           //use getAlbum method to store the album information
@@ -99,6 +100,7 @@
                  } else if (SongPlayer.currentSong === song) {
                      if (currentBuzzObject.isPaused()) {
                          playSong(song);
+                         MetricsService.registerSongPlay(song);
                      }
                    }
               };
@@ -143,6 +145,7 @@
                           var song = currentAlbum.songs[currentSongIndex];
                           setSong(song);
                           playSong(song);
+                          MetricsService.registerSongPlay(song);
                     }
               };
 
@@ -164,6 +167,7 @@
                           var song = currentAlbum.songs[currentSongIndex];
                           setSong(song);
                           playSong(song);
+                          MetricsService.registerSongPlay(song);
                   }
 
                   /**
