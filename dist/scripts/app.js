@@ -22,6 +22,7 @@
             controller: 'CollectionCtrl as collection',
             templateUrl: '/templates/collection.html'
           })
+          //added .state for metrics
           .state('metrics', {
             url: '/metrics',
             controller: 'MetricsCtrl as metrics',

@@ -1,8 +1,11 @@
 (function() {
-    function MetricCtrl($scope, Metrics);
+    function AnalyticsCtrl(MetricsService){
+      console.log("Metrics page works");
+    }
+
 
 
 angular
     .module('blocJams')
-    .controller('MetricCtrl', MetricCtrl);
-})();    
+    .controller('MetricsCtrl', ['Fixtures', MetricsCtrl]);
+})();
