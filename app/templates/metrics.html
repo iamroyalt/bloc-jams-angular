@@ -1,6 +1,8 @@
-<div ng-controller="MetricsController">
-    <h1>Songs Played Log</h1>
-    <div ng-repeat= "songs in songs">
-         <p>{{songs}}</p>
-    </div>
+<div id="metrics" ng-controller="MetricsCtrl">
+	<h1>All song data</h1>
+  <table>
+    <tr ng-repeat="song in metrics.songs">
+      <td>{{ song }}</td>
+    </tr>
+  </table>
 </div>

@@ -2,6 +2,9 @@
      //inject Fixture servce into SongPlayer service
      //METRICS - added MetricService to function
      function SongPlayer($rootScope, Fixtures, MetricsService) {
+          console.log('MetricsService: ');
+          console.log(MetricsService);
+
           var SongPlayer = {};
 
           //use getAlbum method to store the album information
@@ -50,6 +53,8 @@
 
               //update currentSong to SongPlayer.currentSong
               SongPlayer.currentSong = song;
+
+              MetricsService.registerSongPlay(song);
           };
 
               /**
@@ -96,11 +101,11 @@
                      setSong(song);
                      //replace 2 lines of repetitive code with playSong function
                      playSong(song);
+
                  ////update currentSong to SongPlayer.currentSong
                  } else if (SongPlayer.currentSong === song) {
                      if (currentBuzzObject.isPaused()) {
                          playSong(song);
-                         MetricsService.registerSongPlay(song);
                      }
                    }
               };
@@ -145,7 +150,7 @@
                           var song = currentAlbum.songs[currentSongIndex];
                           setSong(song);
                           playSong(song);
-                          MetricsService.registerSongPlay(song);
+
                     }
               };
 
@@ -167,7 +172,7 @@
                           var song = currentAlbum.songs[currentSongIndex];
                           setSong(song);
                           playSong(song);
-                          MetricsService.registerSongPlay(song);
+
                   }
 
                   /**
@@ -200,5 +205,5 @@
 
      angular
          .module('blocJams')
-         .factory('SongPlayer',['$rootScope', 'Fixtures', SongPlayer]);
+         .factory('SongPlayer',['$rootScope', 'Fixtures', 'MetricsService', SongPlayer]);
  })();
