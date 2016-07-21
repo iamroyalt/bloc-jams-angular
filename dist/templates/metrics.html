@@ -1,8 +1,14 @@
-<div id="metrics" ng-controller="MetricsCtrl">
-	<h1>All song data</h1>
+<div ng-app="blocJams" id="metrics" ng-controller="MetricsCtrl">
+		<div ng-controller="MetricsCtrl">
+				<nvd3 options="options" data="data"></nvd3>
+		</div>
+</div>
+	<h1>Number of Times Each Song Played</h1>
   <table>
     <tr ng-repeat="song in metrics.songs">
       <td>{{ song }}</td>
     </tr>
   </table>
-</div>
+	<body>
+	   <svg></svg>
+  </body>
