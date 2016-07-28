@@ -1,14 +1,41 @@
-<div ng-app="blocJams" id="metrics" ng-controller="MetricsCtrl">
-		<div ng-controller="MetricsCtrl">
-				<nvd3 options="options" data="data"></nvd3>
-		</div>
-</div>
+<!-- -->
+<section id="metrics" >
 	<h1>Number of Times Each Song Played</h1>
-  <table>
-    <tr ng-repeat="song in metrics.songs">
-      <td>{{ song }}</td>
-    </tr>
-  </table>
-	<body>
-	   <svg></svg>
-  </body>
+	<table>
+		<tr ng-repeat="song in metrics.songs track by $index">
+			<td>{{ song.title }}</td>
+			<td>{{ song.playedAt | date : 'medium' }}</td>
+		</tr>
+	</table>
+
+	<table>
+		<tr ng-repeat=" song in metrics.summary">
+			<td> {{ song.title}}</td>
+			<td> {{ song.count}}</td>
+	</table>
+{{metrics.chartOptions.type}}
+	<div>
+		<nvd3 options="metrics.chartOptions" data="metrics.chartData"></nvd3>
+	</div>
+</section>
+
+
+<!-- <h3>History</h3>
+
+      <table class="metric-table">
+        <thead>
+          <tr>
+            <th class="date">Time</th>
+            <th class="songHistory">Song</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr ng-repeat="song in metrics.songPlays">
+            <td>{{ songPlays }}</td>
+            <td>{{ song }}</td>
+
+          </tr>
+        </tbody>
+      </table> -->

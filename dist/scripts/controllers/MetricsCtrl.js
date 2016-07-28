@@ -1,18 +1,28 @@
 (function() {
-    function MetricsCtrl($scope, MetricsService){
+    function MetricsCtrl(MetricsService){
       console.log("Metrics page works");
       console.log(MetricsService);
       //call this as metrics.songs in metrics.html
       this.songs = MetricsService.listSongsPlayed();
       console.log(this.songs);
+      this.summary = MetricsService.summarizeSongsPlayed();
+      console.log(this.summary);
+      //[{title: "blue", count: 5}, {title: "pink", count: 4}]
+
+
 
     //create bar chart to show how many times each song played
-    /*
-        $scope.data = {
+      this.chartData = [{
+          key: "Song Count",
+          values: this.summary,
+          color: '#FF7F0E',
+        }];
+
+        this.chartOptions = {
             type: 'multiBarHorizontalChart',
             height: 500,
             //song name
-            x: function(d){return d.name;},
+            x: function(d){return d.title;},
             //song count
             y: function(d){return d.count;},
             showControls: false,
@@ -24,11 +34,10 @@
             yAxis: {
                 axisLabel: 'Plays',
             }
-        }
-        */
+        };
     };
 
 angular
     .module('blocJams')
-    .controller('MetricsCtrl', ['$scope','MetricsService', MetricsCtrl]);
+    .controller('MetricsCtrl', [ 'MetricsService', MetricsCtrl]);
 })();
