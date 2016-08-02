@@ -19,21 +19,23 @@
         }];
 
         this.chartOptions = {
-            type: 'multiBarHorizontalChart',
-            height: 500,
-            //song name
-            x: function(d){return d.title;},
-            //song count
-            y: function(d){return d.count;},
-            showControls: false,
-            showValues: true,
-            duration: 500,
-            xAxis: {
-                showMaxMin: false
-            },
-            yAxis: {
+             chart: {
+                 type: 'multiBarHorizontalChart',
+                 height: 500,
+                 //song name
+                 x: function(d){return d.title;},
+                 //song count
+                 y: function(d){return d.count;},
+                 showControls: false,
+                 showValues: true,
+                 duration: 500,
+                 xAxis: {
+                 showMaxMin: false
+                 },
+                 yAxis: {
                 axisLabel: 'Plays',
-            }
+                }
+             }
         };
     };
 
