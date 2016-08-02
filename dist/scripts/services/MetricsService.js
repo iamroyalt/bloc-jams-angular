@@ -28,22 +28,23 @@
     summarizeSongsPlayed: function() {
         console.log("summarizeSongsPlayed");
         //create array to hold song title and count of songs played
-        var summary = [];
+        var summary = {};
         //use .forEach to iterate through songPlays array,
         angular.forEach($rootScope.songPlays, function(song) {
             //don't need to iterate through, duplicate of forEach
             //for (var i = 0; i < $rootscope.songPlays.length; i++)
             //value = $rootScope.songPlays[i];
-            value = song.title; 
+            value = song.title;
             if (typeof summary[value] === "undefined") {
                 summary[value] = 1;
             } else {
                 summary[value]++;
             }
         });
-        console.log("summarizeSongsPlayed");
-        console.log(summary);
-        return summary;
+        a = [];
+        for (title in summary) {a.push({title: title, count: summary[title]})}
+
+        return a;
       }
     };
   }
