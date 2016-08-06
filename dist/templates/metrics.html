@@ -7,35 +7,14 @@
 			<td>{{ song.playedAt | date : 'medium' }}</td>
 		</tr>
 	</table>
-
+<!--
 	<table>
 		<tr ng-repeat=" song in metrics.summary">
 			<td> {{ song.title}}</td>
 			<td> {{ song.count}}</td>
 	</table>
-{{metrics.chartOptions.type}}
+{{metrics.chartOptions.type}} -->
 	<div>
 		<nvd3 options="metrics.chartOptions" data="metrics.chartData"></nvd3>
 	</div>
 </section>
-
-
-<!-- <h3>History</h3>
-
-      <table class="metric-table">
-        <thead>
-          <tr>
-            <th class="date">Time</th>
-            <th class="songHistory">Song</th>
-
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr ng-repeat="song in metrics.songPlays">
-            <td>{{ songPlays }}</td>
-            <td>{{ song }}</td>
-
-          </tr>
-        </tbody>
-      </table> -->

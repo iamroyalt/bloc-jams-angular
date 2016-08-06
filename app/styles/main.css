@@ -69,12 +69,13 @@ body {
   max-width: 64rem;
 }
 
-@media (min-wdith: 640px) {
+@media (min-width: 40rem) {
   html { font-size: 112%;}
   .column {
     float: left;
-    padding-left: 1rem;
-    padding-right: 1rem;
+    padding: 0;
+    /*padding-left: 1rem;
+    padding-right: 1rem; */
   }
 
   .column.full { width: 100%;}
@@ -85,7 +86,7 @@ body {
   .column.flow-opposite {float: right;}
   }
 
-@media (min-width: 1024px) {
+@media (min-width: 64rem) {
   html {font-size: 120%;}
 }
 

@@ -1,5 +1,6 @@
  .album-covers {
      position: relative;
+     display: inline-block;
  }
 
  .collection-album-container {
@@ -7,6 +8,7 @@
      margin-top: 30px;
      margin-bottom: 20px;
      text-align: center;
+     display: inline-block;
  }
 
  .collection-album-container .caption {
