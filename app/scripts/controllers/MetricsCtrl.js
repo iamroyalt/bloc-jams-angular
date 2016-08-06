@@ -15,7 +15,7 @@
       this.chartData = [{
           key: "Song Count",
           values: this.summary,
-          color: '#FF7F0E',
+          color: 'pink',
         }];
 
         this.chartOptions = {
@@ -30,10 +30,11 @@
                  showValues: true,
                  duration: 500,
                  xAxis: {
-                 showMaxMin: false
+                     showMaxMin: false,
+                     color: 'white'
                  },
                  yAxis: {
-                axisLabel: 'Plays',
+                     axisLabel: 'Plays',
                 }
              }
         };
